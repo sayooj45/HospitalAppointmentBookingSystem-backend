@@ -3,12 +3,19 @@ import mongoose from 'mongoose';
 import router from './Route/loginRoute.js';
 import dotenv from 'dotenv'
 import admin from './Route/adminRoute.js';
+import cors from 'cors'
 
 dotenv.config()
 
 const app = express();
 app.use(json())
 
+app.use(
+  cors({
+    origin: "https://hospital-appointment-booking-system.netlify.app",
+    credentials: true,
+  })
+);
 
 app.use('/',router)
 app.use('/admin',admin)
